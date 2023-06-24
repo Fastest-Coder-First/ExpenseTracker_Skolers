@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Expense tracker</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.card {
+			border: none;
+			border-radius: 10px
+		}
+
+		.c-details span {
+			font-weight: 300;
+			font-size: 13px
+		}
+
+		.icon {
+			width: 50px;
+			height: 50px;
+			background-color: #eee;
+			border-radius: 15px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 39px
+		}
+
+		.badge span {
+			background-color: #fffbec;
+			width: 60px;
+			height: 25px;
+			padding-bottom: 3px;
+			border-radius: 5px;
+			display: flex;
+			color: #fed85d;
+			justify-content: center;
+			align-items: center
+		}
+
+		.progress {
+			height: 10px;
+			border-radius: 10px
+		}
+
+		.progress div {
+			background-color: red
+		}
+
+		.text1 {
+			font-size: 14px;
+			font-weight: 600
+		}
+
+		.text2 {
+			color: #a5aec0
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+		<nav id="sidebar" class="active">
+			<h1>
+				<a href="index.html" class="logo">
+					<img src="images/logo.png" alt="Logo" class="img-fluid">
+				</a>
+			</h1>
+			<ul class="list-unstyled components mb-5">
+				<li class="active">
+					<a href="#"><span class="fa fa-home"></span> Dashboard</a>
+				</li>
+				<li>
+					<a href="#"><span class="fa fa-exchange"></span> Add transactions</a>
+				</li>
+				<li>
+					<a href="#"><span class="fa fa-sticky-note"></span> Transaction history</a>
+				</li>
+			</ul>
+			<div class="footer">
+				<p>
+					Copyright &copy;
+					<script>document.write(new Date().getFullYear());</script> All rights reserved | Skolers
+				</p>
+			</div>
+		</nav>
+		<!-- Page Content  -->
+		<div id="content" class="p-4 p-md-5">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle Menu</span>
+					</button>
+					<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<i class="fa fa-bars"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="nav navbar-nav ml-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="#" id="greeting">
+									Hi, User
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="container mt-5">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="card p-3 mb-2">
+							<div class="d-flex justify-content-between">
+								<div class="d-flex flex-row align-items-center text-success">
+									<div class="icon"> <i class="fa fa-rupee"></i> </div>
+									<div class="ms-2 c-details ml-1">
+										<h6 class="mb-0">Income</h6>
+									</div>
+								</div>
+							</div>
+							<div class="mt-5">
+								<h3 class="heading">
+									<span id="income">0.0</span>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="card p-3 mb-2">
+							<div class="d-flex justify-content-between">
+								<div class="d-flex flex-row align-items-center text-danger">
+									<div class="icon"> <i class="fa fa-rupee"></i> </div>
+									<div class="ms-2 c-details ml-1">
+										<h6 class="mb-0">Expenses</h6>
+									</div>
+								</div>
+							</div>
+							<div class="mt-5">
+								<h3 class="heading">
+									<span id="expense">0.0</span>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="card p-3 mb-2">
+							<div class="d-flex justify-content-between">
+								<div class="d-flex flex-row align-items-center text-warning">
+									<div class="icon"> <i class="fa fa-rupee"></i> </div>
+									<div class="ms-2 c-details ml-1">
+										<h6 class="mb-0">Balance</h6>
+									</div>
+								</div>
+							</div>
+							<div class="mt-5">
+								<h3 class="heading">
+									<span id="balance"></span>
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div id="curve_chart" style="width: 100%; height: auto;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
+	<script>
+		// check if user has visited the site before
+		// if first time, ask user for their name and store in local storage
+		if (localStorage.getItem("name") == null) {
+			Swal.fire({
+				title: 'Welcome!',
+				text: 'Please enter your name',
+				input: 'text',
+				inputAttributes: {
+					autocapitalize: 'off'
+				},
+				showCancelButton: false,
+				confirmButtonText: 'Submit',
+				showLoaderOnConfirm: true,
+				preConfirm: (name) => {
+					localStorage.setItem("name", name);
+					document.getElementById("greeting").innerHTML = "Hello " + name;
+				},
+				allowOutsideClick: () => !Swal.isLoading()
+			})
+			console.log(localStorage.getItem("name") + " is null");
+		} else {
+			console.log(localStorage.getItem("name") + " is not null");
+			document.getElementById("greeting").innerHTML = " <i class='fa fa-user'></i> Hello " + localStorage.getItem("name");
+		}
+	</script>
+	<script>
+		document.getElementById("balance").innerHTML = document.getElementById("income").innerHTML - document.getElementById("expense").innerHTML;
+	</script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		// check if data for previous months exists in local storage
+		// if not, create data for previous months
+		if (localStorage.getItem("January") == null) {
+			setDataForPreviousMonths();
+		}
+		google.charts.load('current', { 'packages': ['corechart'] });
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			// Retrieve the monthly data from local storage
+			const months = getPreviousMonthNames(new Date().getMonth());
+			const monthlyData = {};
+			months.forEach(month => {
+				const existingData = JSON.parse(localStorage.getItem(month));
+				monthlyData[month] = existingData;
+			});
+			console.log(monthlyData);
+			console.log(months);
+			// Prepare the chart data array
+			const chartData = [['Month', 'Expense', 'Income']];
+			months.forEach(month => {
+				const expense = monthlyData[month].expense;
+				const income = monthlyData[month].income;
+				chartData.push([month, expense, income]);
+			});
+			var data = google.visualization.arrayToDataTable(chartData);
+			var options = {
+				title: 'Monthly Expenses and Income',
+				curveType: 'function',
+				legend: { position: 'bottom' }
+			};
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+			chart.draw(data, options);
+		}
+	</script>
+</body>
+
+</html>
