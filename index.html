@@ -10,6 +10,59 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+		.card {
+			border: none;
+			border-radius: 10px
+		}
+
+		.c-details span {
+			font-weight: 300;
+			font-size: 13px
+		}
+
+		.icon {
+			width: 50px;
+			height: 50px;
+			background-color: #eee;
+			border-radius: 15px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 39px
+		}
+
+		.badge span {
+			background-color: #fffbec;
+			width: 60px;
+			height: 25px;
+			padding-bottom: 3px;
+			border-radius: 5px;
+			display: flex;
+			color: #fed85d;
+			justify-content: center;
+			align-items: center
+		}
+
+		.progress {
+			height: 10px;
+			border-radius: 10px
+		}
+
+		.progress div {
+			background-color: red
+		}
+
+		.text1 {
+			font-size: 14px;
+			font-weight: 600
+		}
+
+		.text2 {
+			color: #a5aec0
+		}
+	</style>
 </head>
 
 <body>
@@ -56,28 +109,65 @@
 							<li class="nav-item active">
 								<a class="nav-link" href="#" id="greeting">Hello</a>
 							</li>
-						  </ul>
+						</ul>
 					</div>
 				</div>
 			</nav>
-
-			<h2 class="mb-4">Sidebar #07</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-				dolore
-				magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-				id est
-				laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-				dolore
-				magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-				id est
-				laborum.</p>
+			<div class="container mt-5 mb-3">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="card p-3 mb-2">
+							<div class="d-flex justify-content-between">
+								<div class="d-flex flex-row align-items-center text-success">
+									<div class="icon"> <i class="fa fa-rupee"></i> </div>
+									<div class="ms-2 c-details ml-1">
+										<h6 class="mb-0">Income</h6>
+									</div>
+								</div>
+							</div>
+							<div class="mt-5">
+								<h3 class="heading">
+									<span id="income">0.0</span>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="card p-3 mb-2">
+							<div class="d-flex justify-content-between">
+								<div class="d-flex flex-row align-items-center text-danger">
+									<div class="icon"> <i class="fa fa-rupee"></i> </div>
+									<div class="ms-2 c-details ml-1">
+										<h6 class="mb-0">Expenses</h6>
+									</div>
+								</div>
+							</div>
+							<div class="mt-5">
+								<h3 class="heading">
+									<span id="expense">0.0</span>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="card p-3 mb-2">
+							<div class="d-flex justify-content-between">
+								<div class="d-flex flex-row align-items-center text-warning">
+									<div class="icon"> <i class="fa fa-rupee"></i> </div>
+									<div class="ms-2 c-details ml-1">
+										<h6 class="mb-0">Balance</h6>
+									</div>
+								</div>
+							</div>
+							<div class="mt-5">
+								<h3 class="heading">
+									<span id="balance"></span>
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -111,6 +201,9 @@
 			console.log(localStorage.getItem("name") + " is not null");
 			document.getElementById("greeting").innerHTML = "Hello " + localStorage.getItem("name");
 		}
+	</script>
+	<script>
+		document.getElementById("balance").innerHTML = document.getElementById("income").innerHTML - document.getElementById("expense").innerHTML;
 	</script>
 </body>
 
