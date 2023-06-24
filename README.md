@@ -46,3 +46,7 @@ With the help of this project, you can effortlessly track and manage your person
 
   </li>
 </ul>
+
+<hr>
+<br>
+![Expense tracker flowchart](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/61323049/bebc5c21-6099-4cb7-be1f-6b6437d4ad54)
