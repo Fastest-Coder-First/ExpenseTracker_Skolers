@@ -17,7 +17,7 @@ With the help of this project, you can effortlessly track and manage your person
 ![248479336-bebc5c21-6099-4cb7-be1f-6b6437d4ad54-removebg-preview](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/679a62a9-2e0d-4268-b62e-b7a32af894ad)
  <hr>
 <h3>Features:</h3>
-<p style = "text-align: justify">
+<p>
 <b>1. Add transactions:</b> Easily add your income and expenses by providing relevant details such as date, category, amount, and description.<br>
 <b>2. Track expenses:</b> Keep a comprehensive record of your expenses and income to gain insights into your spending habits.<br>
 <b>3. Monthly overview:</b> View a graphical breakdown of your monthly total spending and income to better understand your spending and earning tendencies. <br>
@@ -74,3 +74,14 @@ With the help of this project, you can effortlessly track and manage your person
 
   </li>
 </ul>
+<hr>
+<h3>
+  How Github Co-pilot helped us:
+</h3>
+<p>
+  GitHub Copilot proved to be an invaluable companion throughout our project. It played a significant role in simplifying our coding process by offering intelligent suggestions for repetitive code segments. For instance, when we needed to make minor modifications to similar lines of code, Copilot quickly provided us with the necessary code snippets, saving us a considerable amount of time and enabling us to meet our project deadlines effortlessly.
+
+One remarkable advantage of Copilot was its seamless integration with popular libraries such as SweetAlert2 and Google Charts. Even when our familiarity with these libraries was limited, Copilot guided us through the integration process effortlessly.
+
+Overall, Copilot exceeded our expectations as a generative tool. Its remarkable capabilities allowed us to create our web app seamlessly. We are truly impressed by the value it brought to our project.
+</p>
