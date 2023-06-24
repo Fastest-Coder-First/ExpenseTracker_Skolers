@@ -12,6 +12,10 @@ Expense Tracker by Skolers
 With the help of this project, you can effortlessly track and manage your personal costs. You are able to utilize this tool to add transactions and keep track of your earnings and expenditures. Additionally, it offers a graphical picture of your monthly totals for costs and income.
 <br>
 <hr>
+<h3>Architectural diagram:</h3>
+
+![248479336-bebc5c21-6099-4cb7-be1f-6b6437d4ad54-removebg-preview](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/679a62a9-2e0d-4268-b62e-b7a32af894ad)
+ <hr>
 <h3>Features:</h3>
 <p style = "text-align: justify">
 <b>1. Add transactions:</b> Easily add your income and expenses by providing relevant details such as date, category, amount, and description.<br>
@@ -43,10 +47,30 @@ With the help of this project, you can effortlessly track and manage your person
   Add transaction form
   
   ![image](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/745a2b01-48c9-4fd0-a79b-a0abfe1c0652)
+  </li>
+
+  <li>
+    Adding a transaction
+    
+  ![image](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/bfbad79e-8474-49ff-b924-6bab894bf219)
+
+  </li>
+  <li>
+    Adding another transaction
+    
+  ![image](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/75d50eaf-72bb-4a85-abb8-7d150b54f9a6)
+
+  </li>
+  <li>
+    Checking transaction history
+  
+  ![image](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/f753b1a5-1cd9-4323-910c-2d03febb6bd8)
+
+  </li>
+  <li>
+    Dashboard updated
+    
+  ![image](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/66639966/81627bf9-caa8-4a63-afd2-8870e946497e)
 
   </li>
 </ul>
-
-<hr>
-<br>
-![Expense tracker flowchart](https://github.com/Fastest-Coder-First/ExpenseTracker_Skolers/assets/61323049/bebc5c21-6099-4cb7-be1f-6b6437d4ad54)
