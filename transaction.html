@@ -1,133 +1,154 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Form Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-        body {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        .transaction-page {
-            padding: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .transaction-page h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .category-label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        .category-select {
-            width: 100%;
-            padding: 8px 12px;
-            font-size: 16px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            background-color: #fff;
-            color: #495057;
-        }
-        .category-icon {
-            margin-right: 5px;
-        }
-        .submit-btn-container {
-            text-align: center;
-        }
-        .submit-btn-container button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 4px;
-            background-color: #007bff;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-        }
-        .submit-btn-container button:hover {
-            background-color: #0056b3;
-        }
-        .radio-container {
-            display: flex;
-            align-items: center;
-        }
-        .radio-label {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        .category-icon {
-            width: 25px;
-            height: 25px;
-            margin-right: 5px;
-        }
-        .toast-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-        }
-    </style>
+    <title>Expense tracker - Add transactions</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
+<style>
+    .toast-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+</style>
+
 <body>
     <script src="https://kit.fontawesome.com/86a2303dae.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <!-- Transaction Page -->
-    <div class="transaction-page">
-        <h2>Add Transaction</h2>
-        <form id="transactionForm">
-            <div class="form-group">
-                <label for="transactionName" class="category-label">Transaction Name</label>
-                <input type="text" class="form-control" id="transactionName" required>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <h1>
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="index.html"><span class="fa fa-home"></span> Dashboard</a>
+                </li>
+                <li>
+                    <a href="transaction.html"><span class="fa fa-exchange"></span> Add transactions</a>
+                </li>
+                <li>
+                    <a href="history.html"><span class="fa fa-sticky-note"></span> Transaction history</a>
+                </li>
+            </ul>
+            <div class="footer">
+                <p>
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | Skolers
+                </p>
             </div>
-            <div class="form-group">
-                <label class="category-label">Type</label>
-                <div class="form-check">
-                    <input type="radio" id="expenseRadio" name="transactionType" value="expense" checked>
-                    <label for="expenseRadio" class="radio-label">Expense</label>
-                    <input type="radio" id="incomeRadio" name="transactionType" value="income">
-                    <label for="incomeRadio" class="radio-label">Income</label>
+        </nav>
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" id="greeting">
+                                    Hi, User
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <!-- Transaction Page -->
+                <div class="transaction-page">
+                    <h2>Add Transaction</h2>
+                    <form id="transactionForm" class="form-control w-100" style="border: none;">
+                        <div class="row d-flex">
+                            <div class="col-md-6 col-sm-12">
+                                <input type="text" class="form-control" id="transactionName" placeholder="Transaction Name" required>
+                            </div>
+                            <div class="col-md-6 col-sm-12 justify-content-center">
+                                <div class="mx-2 d-inline">
+                                    <input type="radio" id="expenseRadio" name="transactionType" value="expense" checked>
+                                    <label for="expenseRadio" class="radio-label">Expense</label>
+                                </div>
+                                <div class="mx-2 d-inline">
+                                    <input type="radio" id="incomeRadio" name="transactionType" value="income">
+                                    <label for="incomeRadio" class="radio-label">Income</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 my-2">
+                                <select class="form-control category-select" id="transactionCategory" required>
+                                    <option value="" selected disabled>Select Type</option>
+                                    <optgroup label="Expenses" id="expenseOptions">
+                                        <option value="food"><i class="fas fa-utensils category-icon"></i>Food</option>
+                                        <option value="bills"><i class="fas fa-file-invoice-dollar category-icon"></i>Bills</option>
+                                        <option value="transportation"><i class="fas fa-bus category-icon"></i>Transportation</option>
+                                        <option value="home"><i class="fas fa-home category-icon"></i>Home</option>
+                                        <option value="car"><i class="fas fa-car category-icon"></i>Car</option>
+                                        <option value="entertainment"><i class="fas fa-film category-icon"></i>Entertainment</option>
+                                        <option value="shopping"><i class="fas fa-shopping-bag category-icon"></i>Shopping</option>
+                                        <option value="clothing"><i class="fas fa-tshirt category-icon"></i>Clothing</option>
+                                        <option value="insurance"><i class="fas fa-shield-alt category-icon"></i>Insurance</option>
+                                        <option value="tax"><i class="fas fa-file-invoice category-icon"></i>Tax</option>
+                                        <option value="telephone"><i class="fas fa-phone category-icon"></i>Telephone</option>
+                                        <option value="health"><i class="fas fa-medkit category-icon"></i>Health</option>
+                                        <option value="sport"><i class="fas fa-dumbbell category-icon"></i>Sport</option>
+                                        <option value="baby"><i class="fas fa-baby category-icon"></i>Baby</option>
+                                        <option value="pet"><i class="fas fa-paw category-icon"></i>Pet</option>
+                                        <option value="beauty"><i class="fas fa-cut category-icon"></i>Beauty</option>
+                                        <option value="gift"><i class="fas fa-gift category-icon"></i>Gift</option>
+                                        <option value="social"><i class="fas fa-users category-icon"></i>Social</option>
+                                        <option value="travel"><i class="fas fa-plane category-icon"></i>Travel</option>
+                                        <option value="education"><i class="fas fa-graduation-cap category-icon"></i>Education</option>
+                                        <option value="loan"><i class="fas fa-hand-holding-usd category-icon"></i>Loan</option>
+                                        <option value="others"><i class="fas fa-question-circle category-icon"></i>Others</option>
+                                        <!-- other expense options -->
+                                    </optgroup>
+                                    <optgroup label="Income" id="incomeOptions">
+                                        <option value="salary"><i class="fas fa-wallet category-icon"></i>Salary</option>
+                                        <option value="awards"><i class="fas fa-trophy category-icon"></i>Awards</option>
+                                        <option value="grants"><i class="fas fa-hand-holding-usd category-icon"></i>Grants</option>
+                                        <option value="rental"><i class="fas fa-house-user category-icon"></i>Rental</option>
+                                        <option value="refunds"><i class="fas fa-undo category-icon"></i>Refunds</option>
+                                        <option value="coupons"><i class="fas fa-tags category-icon"></i>Coupons</option>
+                                        <option value="dividends"><i class="fas fa-chart-line category-icon"></i>Dividends</option>
+                                        <option value="investment"><i class="fas fa-chart-pie category-icon"></i>Investment</option>
+                                        <option value="others"><i class="fas fa-question-circle category-icon"></i>Others</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-sm-12 my-2">
+                                <input type="date" class="form-control" id="transactionDate" required>
+                            </div>
+                            <div class="col-md-6 col-sm-12 my-2">
+                                <input type="number" class="form-control" placeholder="Transaction amount" id="transactionAmount" required>
+                            </div>
+                            <div class="col-md-6 col-sm-12 my-2">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="transactionCategory" class="category-label">Category</label>
-                <select class="form-control category-select" id="transactionCategory" required>
-                    <option value="" selected disabled>Select Type</option>
-                    <optgroup label="Expenses" id="expenseOptions">
-                        <option value="food"><i class="fas fa-shield-alt category-icon"></i>Food</option>
-                        <!-- other expense options -->
-                    </optgroup>
-                    <optgroup label="Income" id="incomeOptions">
-                        <option value="salary"><i class="fas fa-money-bill category-icon"></i>Salary</option>
-                        <!-- other income options -->
-                    </optgroup>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="transactionDate" class="category-label">Date</label>
-                <input type="date" class="form-control" id="transactionDate" required>
-            </div>
-            <div class="form-group">
-                <label for="transactionAmount" class="category-label">Amount</label>
-                <input type="number" class="form-control" id="transactionAmount" required>
-            </div>
-            <div class="submit-btn-container">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+        </div>
     </div>
-
     <div class="toast-container">
-        <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true"
+            data-delay="2000">
             <div class="toast-header">
                 <strong class="mr-auto">Success</strong>
                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -139,10 +160,11 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
     <script>
         $(document).ready(function () {
             // Retrieve existing transaction data from local storage
@@ -209,6 +231,23 @@
 
                 // Update history page
                 updateHistoryPage();
+
+                // also update current month's income and expense
+                var currentMonth = new Date().toLocaleString('default', { month: 'long' });
+                if (localStorage.getItem(currentMonth) === null) {
+                    localStorage.setItem(currentMonth, JSON.stringify({
+                        income: transactionType === "income" ? transactionAmount : 0,
+                        expense: transactionType === "expense" ? transactionAmount : 0
+                    }));
+                } else {
+                    var currentMonthData = JSON.parse(localStorage.getItem(currentMonth));
+                    if (transactionType === "income") {
+                        currentMonthData.income = parseInt(currentMonthData.income) + parseInt(transactionAmount);
+                    } else if (transactionType === "expense") {
+                        currentMonthData.expense = parseInt(currentMonthData.expense) + parseInt(transactionAmount);
+                    }
+                    localStorage.setItem(currentMonth, JSON.stringify(currentMonthData));
+                }
             });
 
             // Show appropriate category options based on selected transaction type

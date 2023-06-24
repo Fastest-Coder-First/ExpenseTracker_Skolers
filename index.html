@@ -33,32 +33,13 @@
 
 		.badge span {
 			background-color: #fffbec;
-			width: 60px;
+			max-width: 60px;
 			height: 25px;
 			padding-bottom: 3px;
 			border-radius: 5px;
 			display: flex;
-			color: #fed85d;
 			justify-content: center;
 			align-items: center
-		}
-
-		.progress {
-			height: 10px;
-			border-radius: 10px
-		}
-
-		.progress div {
-			background-color: red
-		}
-
-		.text1 {
-			font-size: 14px;
-			font-weight: 600
-		}
-
-		.text2 {
-			color: #a5aec0
 		}
 	</style>
 </head>
@@ -73,13 +54,13 @@
 			</h1>
 			<ul class="list-unstyled components mb-5">
 				<li class="active">
-					<a href="#"><span class="fa fa-home"></span> Dashboard</a>
+					<a href="index.html"><span class="fa fa-home"></span> Dashboard</a>
 				</li>
 				<li>
-					<a href="#"><span class="fa fa-exchange"></span> Add transactions</a>
+					<a href="transaction.html"><span class="fa fa-exchange"></span> Add transactions</a>
 				</li>
 				<li>
-					<a href="#"><span class="fa fa-sticky-note"></span> Transaction history</a>
+					<a href="history.html"><span class="fa fa-sticky-note"></span> Transaction history</a>
 				</li>
 			</ul>
 			<div class="footer">
@@ -115,13 +96,14 @@
 			</nav>
 			<div class="container mt-5">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4 col-sm-12">
 						<div class="card p-3 mb-2">
 							<div class="d-flex justify-content-between">
 								<div class="d-flex flex-row align-items-center text-success">
 									<div class="icon"> <i class="fa fa-rupee"></i> </div>
 									<div class="ms-2 c-details ml-1">
 										<h6 class="mb-0">Income</h6>
+										<div class="badge"></div>
 									</div>
 								</div>
 							</div>
@@ -132,13 +114,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 col-sm-12">
 						<div class="card p-3 mb-2">
 							<div class="d-flex justify-content-between">
 								<div class="d-flex flex-row align-items-center text-danger">
 									<div class="icon"> <i class="fa fa-rupee"></i> </div>
 									<div class="ms-2 c-details ml-1">
 										<h6 class="mb-0">Expenses</h6>
+										<div class="badge"></div>
 									</div>
 								</div>
 							</div>
@@ -149,13 +132,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 col-sm-12">
 						<div class="card p-3 mb-2">
 							<div class="d-flex justify-content-between">
 								<div class="d-flex flex-row align-items-center text-warning">
 									<div class="icon"> <i class="fa fa-rupee"></i> </div>
 									<div class="ms-2 c-details ml-1">
 										<h6 class="mb-0">Balance</h6>
+										<div class="badge"></div>
 									</div>
 								</div>
 							</div>
@@ -169,7 +153,7 @@
 				</div>
 				<div class="row">
 					<div class="col-12">
-						<div id="curve_chart" style="width: 100%; height: auto;"></div>
+						<div id="curve_chart" class="w-100"></div>
 					</div>
 				</div>
 			</div>
@@ -181,6 +165,7 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script>
 		// check if user has visited the site before
 		// if first time, ask user for their name and store in local storage
@@ -208,9 +193,13 @@
 		}
 	</script>
 	<script>
+		// Add innerHTML to the income and expense elements which have 'badge' class
+		const elements = document.getElementsByClassName("badge");
+		for (let i = 0; i < elements.length; i++) {
+			elements[i].innerHTML = "<span> " + new Date().toLocaleString('default', { month: 'long' })  + "</span>";
+		}
 		document.getElementById("balance").innerHTML = document.getElementById("income").innerHTML - document.getElementById("expense").innerHTML;
-	</script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	</script> 
 	<script type="text/javascript">
 		// check if data for previous months exists in local storage
 		// if not, create data for previous months
