@@ -167,32 +167,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script>
-		// check if user has visited the site before
-		// if first time, ask user for their name and store in local storage
-		if (localStorage.getItem("name") == null) {
-			Swal.fire({
-				title: 'Welcome!',
-				text: 'Please enter your name',
-				input: 'text',
-				inputAttributes: {
-					autocapitalize: 'off'
-				},
-				showCancelButton: false,
-				confirmButtonText: 'Submit',
-				showLoaderOnConfirm: true,
-				preConfirm: (name) => {
-					localStorage.setItem("name", name);
-					document.getElementById("greeting").innerHTML = "Hello " + name;
-				},
-				allowOutsideClick: () => !Swal.isLoading()
-			})
-			console.log(localStorage.getItem("name") + " is null");
-		} else {
-			console.log(localStorage.getItem("name") + " is not null");
-			document.getElementById("greeting").innerHTML = " <i class='fa fa-user'></i> Hello " + localStorage.getItem("name");
-		}
-	</script>
-	<script>
 		var incomeElement = document.getElementById("income");
 		var expenseElement = document.getElementById("expense");
 		var balanceElement = document.getElementById("balance");
@@ -252,5 +226,4 @@
 		}
 	</script>
 </body>
-
 </html>

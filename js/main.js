@@ -57,3 +57,28 @@ function setDataForPreviousMonths() {
 		localStorage.setItem(month, JSON.stringify(monthlyData[month]));
 	});
 }
+
+// check if user has visited the site before
+// if first time, ask user for their name and store in local storage
+if (localStorage.getItem("name") == null) {
+	Swal.fire({
+		title: 'Welcome!',
+		text: 'Please enter your name',
+		input: 'text',
+		inputAttributes: {
+			autocapitalize: 'off'
+		},
+		showCancelButton: false,
+		confirmButtonText: 'Submit',
+		showLoaderOnConfirm: true,
+		preConfirm: (name) => {
+			localStorage.setItem("name", name);
+			document.getElementById("greeting").innerHTML = "Hello " + name;
+		},
+		allowOutsideClick: () => !Swal.isLoading()
+	})
+	console.log(localStorage.getItem("name") + " is null");
+} else {
+	console.log(localStorage.getItem("name") + " is not null");
+	document.getElementById("greeting").innerHTML = " <i class='fa fa-user'></i> Hello " + localStorage.getItem("name");
+}
