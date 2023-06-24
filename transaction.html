@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .transaction-page {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .transaction-page h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .category-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .category-select {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #495057;
+        }
+        .category-icon {
+            margin-right: 5px;
+        }
+        .submit-btn-container {
+            text-align: center;
+        }
+        .submit-btn-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 4px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        .submit-btn-container button:hover {
+            background-color: #0056b3;
+        }
+        .radio-container {
+            display: flex;
+            align-items: center;
+        }
+        .radio-label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .category-icon {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/86a2303dae.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Transaction Page -->
+    <div class="transaction-page">
+        <h2>Add Transaction</h2>
+        <form id="transactionForm">
+            <div class="form-group">
+                <label for="transactionName" class="category-label">Transaction Name</label>
+                <input type="text" class="form-control" id="transactionName" required>
+            </div>
+            <div class="form-group">
+                <label class="category-label">Type</label>
+                <div class="form-check">
+                    <input type="radio" id="expenseRadio" name="transactionType" value="expense" checked>
+                    <label for="expenseRadio" class="radio-label">Expense</label>
+                    <input type="radio" id="incomeRadio" name="transactionType" value="income">
+                    <label for="incomeRadio" class="radio-label">Income</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="transactionCategory" class="category-label">Category</label>
+                <select class="form-control category-select" id="transactionCategory" required>
+                    <option value="" selected disabled>Select Type</option>
+                    <optgroup label="Expenses" id="expenseOptions">
+                        <option value="food"><i class="fas fa-shield-alt category-icon"></i>Food</option>
+                        <!-- other expense options -->
+                    </optgroup>
+                    <optgroup label="Income" id="incomeOptions">
+                        <option value="salary"><i class="fas fa-money-bill category-icon"></i>Salary</option>
+                        <!-- other income options -->
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="transactionDate" class="category-label">Date</label>
+                <input type="date" class="form-control" id="transactionDate" required>
+            </div>
+            <div class="form-group">
+                <label for="transactionAmount" class="category-label">Amount</label>
+                <input type="number" class="form-control" id="transactionAmount" required>
+            </div>
+            <div class="submit-btn-container">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="toast-container">
+        <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+            <div class="toast-header">
+                <strong class="mr-auto">Success</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Transaction submitted successfully!
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Retrieve existing transaction data from local storage
+            var transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+            // Function to save transaction data to local storage
+            function saveTransaction(transaction) {
+                transactions.push(transaction);
+                localStorage.setItem("transactions", JSON.stringify(transactions));
+            }
+
+            // Function to retrieve all transaction data from local storage and update the history page
+            function updateHistoryPage() {
+                var historyData = JSON.parse(localStorage.getItem("transactions")) || [];
+
+                var historyContainer = $("#historyContainer");
+                historyContainer.empty();
+
+                if (historyData.length === 0) {
+                    historyContainer.append('<p>No transactions recorded.</p>');
+                } else {
+                    var historyList = $('<ul class="list-group"></ul>');
+                    historyData.forEach(function (transaction) {
+                        var listItem = $('<li class="list-group-item"></li>');
+                        listItem.text(transaction.name + " - " + transaction.type + " - " + transaction.category + " - " + transaction.date + " - " + transaction.amount);
+                        historyList.append(listItem);
+                    });
+                    historyContainer.append(historyList);
+                }
+            }
+
+            // Submit form event
+            $("#transactionForm").submit(function (event) {
+                event.preventDefault();
+
+                // Get form values
+                var transactionName = $("#transactionName").val();
+                var transactionType = $('input[name="transactionType"]:checked').val();
+                var transactionCategory = $("#transactionCategory").val();
+                var transactionDate = $("#transactionDate").val();
+                var transactionAmount = $("#transactionAmount").val();
+
+                // Create transaction object
+                var transaction = {
+                    name: transactionName,
+                    type: transactionType,
+                    category: transactionCategory,
+                    date: transactionDate,
+                    amount: transactionAmount
+                };
+
+                // Save transaction to local storage
+                saveTransaction(transaction);
+
+                // Show success toast
+                $(".toast").toast("show");
+
+                // Clear form inputs
+                $("#transactionName").val("");
+                $('input[name="transactionType"]').prop("checked", false);
+                $("#transactionCategory").val("");
+                $("#transactionDate").val("");
+                $("#transactionAmount").val("");
+
+                // Update history page
+                updateHistoryPage();
+            });
+
+            // Show appropriate category options based on selected transaction type
+            $('input[name="transactionType"]').change(function () {
+                if (this.value === "expense") {
+                    $("#expenseOptions").show();
+                    $("#incomeOptions").hide();
+                } else if (this.value === "income") {
+                    $("#expenseOptions").hide();
+                    $("#incomeOptions").show();
+                }
+            });
+
+            // Initialize the toast
+            $(".toast").toast({
+                autohide: false
+            });
+
+            // Update history page on initial load
+            updateHistoryPage();
+        });
+    </script>
+</body>
+
+</html>
