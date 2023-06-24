@@ -198,16 +198,20 @@
 		var expenseElement = document.getElementById("expense");
 		var balanceElement = document.getElementById("balance");
 		var currentMonthStats = JSON.parse(localStorage.getItem(new Date().toLocaleDateString('default', { month: 'long' })));
+		if (currentMonthStats == null) {
+			currentMonthStats = {
+				income: 0,
+				expense: 0,
+				balance: 0
+			}
+		}
+
+		if (isNaN(currentMonthStats.expense)) {
+			currentMonthStats.expense = 0;
+		}
 		var income = currentMonthStats.income;
 		var expense = currentMonthStats.expense;
-		var balance = currentMonthStats.balance;
 
-		if (isNaN(income)) {
-			income = 0;
-		}
-		if (isNaN(expense)) {
-			expense = 0;
-		}
 		incomeElement.innerHTML = incomeElement.innerHTML + income;
 		expenseElement.innerHTML = expenseElement.innerHTML + expense;
 		balanceElement.innerHTML = incomeElement.innerHTML - expenseElement.innerHTML;
