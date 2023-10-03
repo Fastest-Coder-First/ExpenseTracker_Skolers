@@ -272,6 +272,12 @@
             updateHistoryPage();
         });
     </script>
+    <script>
+        var name = localStorage.getItem("name");
+        if (name != null) {
+            document.getElementById("greeting").innerHTML = "Hi, " + name;
+        }
+    </script>
 </body>
 
 </html>
