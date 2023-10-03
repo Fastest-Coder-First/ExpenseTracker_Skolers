@@ -26,4 +26,3 @@ With the help of this project, you can effortlessly track and manage your person
   <li>CSS3</li>
   <li>JavaScript</li>
 </ul>
-<hr>
